@@ -11,6 +11,7 @@ function GoTo(Location)
         print("Going to the main map...")
         local args = {
             [1] = "MainMap",
+            [2] = nil,
             [3] = "Summerfest"
         }
         for _, Furniture in pairs(OwnedFurnitures) do
