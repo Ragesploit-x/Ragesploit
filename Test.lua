@@ -13,7 +13,7 @@ function GoTo(Location)
         local args = {
             [1] = "MainMap",
             [2] = nil,
-            [3] = "Summerfest"
+            [3] = "Default"
         }
         for _, Furniture in pairs(OwnedFurnitures) do
             game:GetService("ReplicatedStorage").API:FindFirstChild("DownloadsAPI/Download"):InvokeServer("Furniture", Furniture)
