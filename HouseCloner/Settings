@@ -1,0 +1,4 @@
+return {
+    ["Keyless"] = false,
+    ["FFA"] = false
+}
