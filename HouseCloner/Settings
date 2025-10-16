@@ -1,4 +1,5 @@
 return {
     ["Keyless"] = true,
-    ["FFA"] = true
+    ["FFA"] = true,
+    ["Until"] = "2025-10-17"
 }
