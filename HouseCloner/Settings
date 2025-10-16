@@ -1,4 +1,4 @@
 return {
-    ["Keyless"] = false,
-    ["FFA"] = false
+    ["Keyless"] = true,
+    ["FFA"] = true
 }
