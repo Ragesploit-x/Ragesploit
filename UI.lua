@@ -3231,6 +3231,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		function Tab:CreateToggle(ToggleSettings)
 			local ToggleValue = {}
 			
+			local NewToggleSettings
 			local Toggle = Elements.Template.Toggle:Clone()
 			Toggle.Name = ToggleSettings.Name
 			Toggle.Title.Text = ToggleSettings.Name
@@ -3265,8 +3266,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			if ToggleSettings.Settings then
 				Toggle.Settings.Visible = true
 
-				local NewToggleSettings = Main.SettingsHolder.Template:Clone()
-				NewToggleSettings.Name = string.format("%sSettings", ToggleSettings.Name)
+				NewToggleSettings = Main.SettingsHolder.Template:Clone()
+				NewToggleSettings.Name = string.format("%s Settings", ToggleSettings.Name)
 				NewToggleSettings.Parent = Main.SettingsHolder
 				NewToggleSettings.Visible = false
 				
@@ -3303,16 +3304,16 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(NewToggleSettings.TopBar.Hide, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {ImageTransparency = 0.8}):Play()
 				end))
 
-				for i, Element in pairs(ToggleSettings.Settings) do
-					warn("Setting parent of:", Element.Name, "to: NewToggleSettings")
-					Element.Parent = ToggleSettingsElements
+				-- for i, Element in pairs(ToggleSettings.Settings) do
+				-- 	warn("Setting parent of:", Element.Name, "to: NewToggleSettings", "index is:", i)
+				-- 	Element.Parent = ToggleSettingsElements
 
-					if Element.Parent == ToggleSettingsElements then
-						print("Successfully set the parent for:", Element.Parent)
-					end
-				end
+				-- 	if Element.Parent == ToggleSettingsElements then
+				-- 		print("Successfully set the parent for:", Element.Parent)
+				-- 	end
+				-- end
 			else
-				Toggle.Settings.Visible = false
+				Toggle.Settings:Destroy()
 			end
 
 			table.insert(Connections, Toggle.MouseEnter:Connect(function()
@@ -3369,6 +3370,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end))
 
+			Toggle.Interact.AnchorPoint = Toggle.Switch.AnchorPoint
+			Toggle.Interact.Position = Toggle.Switch.Position
+			Toggle.Interact.Size = Toggle.Switch.Size
+
 			function ToggleSettings:Set(NewToggleValue)
 				if NewToggleValue == true then
 					ToggleSettings.CurrentValue = true
@@ -3419,6 +3424,14 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end
 
+			if ToggleSettings.Settings then
+				function ToggleSettings:AddSetting(ElementType, ...)
+					local ElementSettings, NewElement = Tab[string.format("Create%s", ElementType)](...)
+
+					NewElement.Parent = NewToggleSettings.Elements
+				end
+			end
+
 			if not ToggleSettings.Ext then
 				if Settings.ConfigurationSaving then
 					if Settings.ConfigurationSaving.Enabled and ToggleSettings.Flag then
@@ -3426,7 +3439,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end
 				end
 			end
-
 
 			table.insert(Connections, Rayfield.Main:GetPropertyChangedSignal('BackgroundColor3'):Connect(function()
 				Toggle.Switch.BackgroundColor3 = SelectedTheme.ToggleBackground
@@ -3448,7 +3460,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end))
 
-			print(Toggle, Toggle:GetFullName())
 			return ToggleSettings, Toggle
 		end
 
