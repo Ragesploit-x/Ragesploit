@@ -4055,6 +4055,7 @@ do
 	SettingsButton.Size = UDim2.new(0, 30, 0, 30)
 	SettingsButton.BackgroundTransparency = 1
 	SettingsButton.Visible = false
+	SettingsButton.ImageTransparency = 0.8
 
 	local SettingsImage, SettingsRectOffset, SettingsRectSize = resolveIcon("settings")
 	SettingsButton.Image = SettingsImage
