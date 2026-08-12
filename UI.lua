@@ -3954,8 +3954,8 @@ do
 		SettingsHolder.Name = "SettingsHolder"
 		SettingsHolder.BackgroundTransparency = 1
 		SettingsHolder.AnchorPoint = Vector2.new(0.5, 1)
-		SettingsHolder.Position = UDim2.new({0.5, 0}, {0.975, 0})
-		SettingsHolder.Size = UDim2.new({0.95, 0}, {0.755, 0})
+		SettingsHolder.Position = UDim2.new(0.5, 0, 0.975, 0)
+		SettingsHolder.Size = UDim2.new(0.95, 0, 0.755, 0)
 	end
 
 	-- Custom settings template - made by @ragesploit on discord.
@@ -3965,8 +3965,8 @@ do
 		SettingsTemplate.Name = "Template"
 		SettingsTemplate.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 		SettingsTemplate.AnchorPoint = Vector2.new(0.5, 0.5)
-		SettingsTemplate.Position = UDim2.new({0.5, 0}, {0.5, 0})
-		SettingsTemplate.Size = UDim2.new({1, 0}, {1, 0})
+		SettingsTemplate.Position = UDim2.new(0.5, 0, 0.5, 0)
+		SettingsTemplate.Size = UDim2.new(1, 0, 1, 0)
 		Instance.new("UICorner", SettingsTemplate)
 		Instance.new("UIStroke", SettingsTemplate).Color = Color3.fromRGB(65, 65, 65)
 
@@ -3975,13 +3975,13 @@ do
 		SettingsTemplateElements.Name = "Elements"
 		SettingsTemplateElements.BackgroundTransparency = 1
 		SettingsTemplateElements.AnchorPoint = Vector2.new(0.5, 0.5)
-		SettingsTemplateElements.Position = UDim2.new({0.5, 0}, {0.55, 0})
-		SettingsTemplateElements.Size = UDim2.new({1, -25}, {1, -50})
+		SettingsTemplateElements.Position = UDim2.new(0.5, 0, 0.55, 0)
+		SettingsTemplateElements.Size = UDim2.new(1, -25, 1, -50)
 		SettingsTemplateElements.ZIndex = 2
 		SettingsTemplateElements.ClipsDescendants = true
 		SettingsTemplateElements.ScrollBarThickness = 0
 		SettingsTemplateElements.ScrollBarImageTransparency = 1
-		SettingsTemplateElements.CanvasSize = UDim2.new({0, 0}, {0, 0})
+		SettingsTemplateElements.CanvasSize = UDim2.new(0, 0, 0, 0)
 		SettingsTemplateElements.AutomaticCanvasSize = Enum.AutomaticSize.Y
 		
 		local ElementsListLayout = Instance.new("UIListLayout")
@@ -3994,24 +3994,24 @@ do
 		SettingsTopBar.Name = "TopBar"
 		SettingsTopBar.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
 		SettingsTopBar.AnchorPoint = Vector2.new(0.5, 0)
-		SettingsTopBar.Position = UDim2.new({0.5, 0}, {0.005, 0})
-		SettingsTopBar.Size = UDim2.new({1, 0}, {0.1, 0})
+		SettingsTopBar.Position = UDim2.new(0.5, 0, 0.005, 0)
+		SettingsTopBar.Size = UDim2.new(1, 0, 0.1, 0)
 		Instance.new("UICorner", SettingsTopBar)
 
 		local TopBarDivider = Instance.new("Frame")
 		TopBarDivider.Parent = SettingsTopBar
 		TopBarDivider.Name = "Divider"
 		TopBarDivider.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
-		TopBarDivider.Position = UDim2.new({0, 0}, {1, 0})
-		TopBarDivider.Size = UDim2.new({1, 0}, {0, 1})
+		TopBarDivider.Position = UDim2.new(0, 0, 1, 0)
+		TopBarDivider.Size = UDim2.new(1, 0, 0, 1)
 
 		local TopBarHideButton = Instance.new("ImageButton")
 		TopBarHideButton.Parent = SettingsTopBar
 		TopBarHideButton.Name = "Hide"
 		TopBarHideButton.BackgroundTransparency = 1
 		TopBarHideButton.AnchorPoint = Vector2.new(1, 0.5)
-		TopBarHideButton.Position = UDim2.new({1, -10}, {0.5, 0})
-		TopBarHideButton.Size = UDim2.new({0, 24}, {0, 24})
+		TopBarHideButton.Position = UDim2.new(1, -10, 0.5, 0)
+		TopBarHideButton.Size = UDim2.new(0, 24, 0, 24)
 		TopBarHideButton.ZIndex = 5
 		TopBarHideButton.Image = "rbxassetid://16898613869"
 		TopBarHideButton.ImageColor3 = Color3.fromRGB(240, 240, 240)
@@ -4033,8 +4033,8 @@ do
 		TopBarTitle.Name = "Title"
 		TopBarTitle.BackgroundTransparency = 1
 		TopBarTitle.AnchorPoint = Vector2.new(0, 0.5)
-		TopBarTitle.Position = UDim2.new({0, 17}, {0.5, 0})
-		TopBarTitle.Size = UDim2.new({0, 338})
+		TopBarTitle.Position = UDim2.new(0, 17, 0.5, 0)
+		TopBarTitle.Size = UDim2.new(0, 338)
 		TopBarTitle.ZIndex = 5
 		TopBarTitle.Text = "Template - Toggle settings"
 		TopBarTitle.TextColor3 = Color3.fromRGB(240, 240, 240)
@@ -4051,8 +4051,8 @@ do
 	SettingsButton.Parent = Rayfield.Main.Elements.Template.Toggle
 	SettingsButton.Name = "Settings"
 	SettingsButton.AnchorPoint = Vector2.new(1, 0.5)
-	SettingsButton.Position = UDim2.new({1, -60}, {0, 20})
-	SettingsButton.Size = UDim2.new({0, 30}, {0, 30})
+	SettingsButton.Position = UDim2.new(1, -60, 0, 20)
+	SettingsButton.Size = UDim2.new(0, 30, 0, 30)
 	SettingsButton.BackgroundTransparency = 1
 	SettingsButton.Visible = false
 
