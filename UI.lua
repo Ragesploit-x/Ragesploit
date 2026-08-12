@@ -960,7 +960,13 @@ local function ChangeTheme(Theme)
 
 	for _, text in ipairs(Rayfield:GetDescendants()) do
 		if text.Parent.Parent ~= Notifications then
-			if text:IsA('TextLabel') or text:IsA('TextBox') then text.TextColor3 = SelectedTheme.TextColor end
+			if text:IsA('TextLabel') or text:IsA('TextBox') then
+				text.TextColor3 = SelectedTheme.TextColor
+			elseif text:IsA("UIStroke") then
+				text.Color = SelectedTheme.ElementStroke
+			elseif text:IsA("ImageButton") and text.Name == "Settings" then
+				text.ImageColor3 = SelectedTheme.PlaceholderColor
+			end
 		end
 	end
 
@@ -968,9 +974,14 @@ local function ChangeTheme(Theme)
 		for _, Element in ipairs(TabPage:GetChildren()) do
 			if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
 				Element.BackgroundColor3 = SelectedTheme.ElementBackground
-				Element.UIStroke.Color = SelectedTheme.ElementStroke
+				-- Element.UIStroke.Color = SelectedTheme.ElementStroke
 			end
 		end
+	end
+
+	for _, TogglesSettings in pairs(Main.SettingsHolder:GetChildren()) do
+		TogglesSettings.TopBar.BackgroundColor3 = SelectedTheme.Topbar
+		TogglesSettings.BackgroundColor3 = SelectedTheme.Background
 	end
 end
 
@@ -3288,7 +3299,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end))
 
 				table.insert(Connections, Toggle.Settings.MouseLeave:Connect(function()
-					TweenService:Create(Toggle.Settings, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {ImageTransparency = 0.8}):Play()
+					TweenService:Create(Toggle.Settings, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {ImageTransparency = 0.65}):Play()
 				end))
 
 				table.insert(Connections, NewToggleSettings.TopBar.Hide.MouseButton1Click:Connect(function()
@@ -4074,7 +4085,7 @@ do
 	SettingsButton.Size = UDim2.new(0, 30, 0, 30)
 	SettingsButton.BackgroundTransparency = 1
 	SettingsButton.Visible = false
-	SettingsButton.ImageTransparency = 0.8
+	SettingsButton.ImageTransparency = 0.65
 
 	local SettingsImage, SettingsRectOffset, SettingsRectSize = resolveIcon("settings")
 	SettingsButton.Image = SettingsImage
