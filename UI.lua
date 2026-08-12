@@ -3448,6 +3448,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end
 			end))
 
+			print(Toggle, Toggle:GetFullName())
 			return ToggleSettings, Toggle
 		end
 
