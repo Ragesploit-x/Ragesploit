@@ -3266,9 +3266,17 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Toggle.Settings.Visible = true
 
 				local NewToggleSettings = Main.SettingsHolder.Template:Clone()
+				NewToggleSettings.Name = string.format("%sSettings", ToggleSettings.Name)
 				NewToggleSettings.Parent = Main.SettingsHolder
 				NewToggleSettings.Visible = false
-				NewToggleSettings.TopBar.Title = string.format("%s - Toggle settings", ToggleSettings.Name)
+				
+				local ToggleSettingsTitle = NewToggleSettings.TopBar:WaitForChild("Title", 2)
+
+				if ToggleSettingsTitle then
+					ToggleSettingsTitle.Text = string.format("%s - Toggle settings", ToggleSettings.Name)
+				else
+					
+				end
 
 				table.insert(Connections, Toggle.Settings.MouseButton1Click:Connect(function()
 					NewToggleSettings.Visible = not NewToggleSettings.Visible
