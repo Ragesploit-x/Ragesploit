@@ -3969,6 +3969,7 @@ do
 		SettingsTemplate.Size = UDim2.new(1, 0, 1, 0)
 		Instance.new("UICorner", SettingsTemplate)
 		Instance.new("UIStroke", SettingsTemplate).Color = Color3.fromRGB(65, 65, 65)
+		SettingsTemplate.Visible = false
 
 		local SettingsTemplateElements = Instance.new("ScrollingFrame")
 		SettingsTemplateElements.Parent = SettingsTemplate
@@ -4061,6 +4062,14 @@ do
 	SettingsButton.Image = SettingsImage
 	if SettingsRectOffset then SettingsButton.ImageRectOffset = SettingsRectOffset end
 	if SettingsRectSize then SettingsButton.ImageRectSize = SettingsRectSize end
+
+	-- Interact button fixed in position.
+	pcall(function(...)
+		local Interact = Rayfield.Main.Elements.Template.Toggle.Interact
+		Interact.AnchorPoint = Vector2.new(0.5, 0.5)
+		Interact.Position = UDim2.new(0.945, 0, 0.5, 0)
+		Interact.Size = UDim2.new(0.109, 0, 1, 0)
+	end)
 end
 
 if CEnabled and Main:FindFirstChild('Notice') then
