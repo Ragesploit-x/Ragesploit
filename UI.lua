@@ -4028,7 +4028,6 @@ do
 		TopBarTitle.Position = UDim2.new({0, 17}, {0.5, 0})
 		TopBarTitle.Size = UDim2.new({0, 338})
 		TopBarTitle.ZIndex = 5
-		TopBarTitle.FontFace.Weight = Enum.FontWeight.Medium
 		TopBarTitle.Text = "Template - Toggle settings"
 		TopBarTitle.TextColor3 = Color3.fromRGB(240, 240, 240)
 		TopBarTitle.TextScaled = true
