@@ -4020,7 +4020,7 @@ do
 		-- 	TweenService:Create(TopBarHideButton, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ImageTransparency = 0.8}):Play()
 		-- end))
 
-		local TopBarTitle = Instance.new("TextLabel")
+		local TopBarTitle = Main.Topbar.Title:Clone()
 		TopBarTitle.Parent = SettingsTopBar
 		TopBarTitle.Name = "Title"
 		TopBarTitle.BackgroundTransparency = 1
@@ -4028,7 +4028,6 @@ do
 		TopBarTitle.Position = UDim2.new({0, 17}, {0.5, 0})
 		TopBarTitle.Size = UDim2.new({0, 338})
 		TopBarTitle.ZIndex = 5
-		TopBarTitle.FontFace = Enum.Font.Montserrat
 		TopBarTitle.FontFace.Weight = Enum.FontWeight.Medium
 		TopBarTitle.Text = "Template - Toggle settings"
 		TopBarTitle.TextColor3 = Color3.fromRGB(240, 240, 240)
