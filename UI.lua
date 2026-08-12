@@ -981,7 +981,24 @@ local function ChangeTheme(Theme)
 
 	for _, TogglesSettings in pairs(Main.SettingsHolder:GetChildren()) do
 		TogglesSettings.TopBar.BackgroundColor3 = SelectedTheme.Topbar
+		TogglesSettings.TopBar.Divider.BackgroundColor3 = SelectedTheme.ElementStroke
 		TogglesSettings.BackgroundColor3 = SelectedTheme.Background
+		TogglesSettings.TopBar.Hide.ImageColor3 = SelectedTheme.TextColor
+
+		for _, Element in pairs(TogglesSettings.Elements:GetChildren()) do
+			if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
+				Element.BackgroundColor3 = SelectedTheme.ElementBackground
+
+				if Element:FindFirstChild("List") then
+					for _, Option in pairs(Element.List:GetChildren()) do
+						Option.BackgroundColor3 = SelectedTheme.DropdownUnselected
+						Option.UIStroke.Color = SelectedTheme.ElementStroke
+					end
+
+					Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
+				end
+			end
+		end
 	end
 end
 
@@ -3440,6 +3457,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 					local ElementSettings, NewElement = Tab[string.format("Create%s", ElementType)](Tab, ...)
 
 					NewElement.Parent = NewToggleSettings.Elements
+
+					-- if ElementType == "Dropdown" then
+					-- 	NewElement.List.ZIndex = 2
+					-- end
+					return ElementSettings, NewElement
 				end
 			end
 
@@ -4007,7 +4029,7 @@ do
 		SettingsTemplateElements.AnchorPoint = Vector2.new(0.5, 0.5)
 		SettingsTemplateElements.Position = UDim2.new(0.5, 0, 0.55, 0)
 		SettingsTemplateElements.Size = UDim2.new(1, -25, 1, -50)
-		SettingsTemplateElements.ZIndex = 2
+		SettingsTemplateElements.ZIndex = 1
 		SettingsTemplateElements.ClipsDescendants = true
 		SettingsTemplateElements.ScrollBarThickness = 0
 		SettingsTemplateElements.ScrollBarImageTransparency = 1
@@ -4024,9 +4046,10 @@ do
 		SettingsTopBar.Name = "TopBar"
 		SettingsTopBar.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
 		SettingsTopBar.AnchorPoint = Vector2.new(0.5, 0)
-		SettingsTopBar.Position = UDim2.new(0.5, 0, 0.005, 0)
+		SettingsTopBar.Position = UDim2.new(0.5, 0, 0, 0)
 		SettingsTopBar.Size = UDim2.new(1, 0, 0.1, 0)
 		Instance.new("UICorner", SettingsTopBar)
+		Main.Topbar.CornerRepair:Clone().Parent = SettingsTopBar
 
 		local TopBarDivider = Instance.new("Frame")
 		TopBarDivider.Parent = SettingsTopBar
@@ -4034,6 +4057,7 @@ do
 		TopBarDivider.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
 		TopBarDivider.Position = UDim2.new(0, 0, 1, 0)
 		TopBarDivider.Size = UDim2.new(1, 0, 0, 1)
+		TopBarDivider.BorderSizePixel = 0
 
 		local TopBarHideButton = Instance.new("ImageButton")
 		TopBarHideButton.Parent = SettingsTopBar
