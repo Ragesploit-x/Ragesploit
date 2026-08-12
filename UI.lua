@@ -3271,11 +3271,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 				NewToggleSettings.Visible = false
 				
 				local ToggleSettingsTitle = NewToggleSettings.TopBar:WaitForChild("Title", 2)
+				local ToggleSettingsElements = NewToggleSettings:WaitForChild("Elements")
 
 				if ToggleSettingsTitle then
 					ToggleSettingsTitle.Text = string.format("%s - Toggle settings", ToggleSettings.Name)
-				else
-					
 				end
 
 				table.insert(Connections, Toggle.Settings.MouseButton1Click:Connect(function()
@@ -3305,8 +3304,15 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end))
 
 				for i, Element in pairs(ToggleSettings.Settings) do
-					Element.Parent = NewToggleSettings.Elements
+					warn("Setting parent of:", Element.Name, "to: NewToggleSettings")
+					Element.Parent = ToggleSettingsElements
+
+					if Element.Parent == ToggleSettingsElements then
+						print("Successfully set the parent for:", Element.Parent)
+					end
 				end
+			else
+				Toggle.Settings.Visible = false
 			end
 
 			table.insert(Connections, Toggle.MouseEnter:Connect(function()
@@ -4035,7 +4041,7 @@ do
 		TopBarTitle.BackgroundTransparency = 1
 		TopBarTitle.AnchorPoint = Vector2.new(0, 0.5)
 		TopBarTitle.Position = UDim2.new(0, 17, 0.5, 0)
-		TopBarTitle.Size = UDim2.new(0, 338)
+		TopBarTitle.Size = UDim2.new(0, 338, 0, 16)
 		TopBarTitle.ZIndex = 5
 		TopBarTitle.Text = "Template - Toggle settings"
 		TopBarTitle.TextColor3 = Color3.fromRGB(240, 240, 240)
