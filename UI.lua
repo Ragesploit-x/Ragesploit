@@ -3426,7 +3426,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if ToggleSettings.Settings then
 				function ToggleSettings:AddSetting(ElementType, ...)
-					local ElementSettings, NewElement = Tab[string.format("Create%s", ElementType)](...)
+					local ElementSettings, NewElement = Tab[string.format("Create%s", ElementType)](Tab, ...)
 
 					NewElement.Parent = NewToggleSettings.Elements
 				end
