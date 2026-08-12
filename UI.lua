@@ -3268,6 +3268,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				local NewToggleSettings = Main.SettingsHolder.Template:Clone()
 				NewToggleSettings.Parent = Main.SettingsHolder
 				NewToggleSettings.Visible = false
+				NewToggleSettings.TopBar.Title = string.format("%s - Toggle settings", ToggleSettings.Name)
 
 				table.insert(Connections, Toggle.Settings.MouseButton1Click:Connect(function()
 					NewToggleSettings.Visible = not NewToggleSettings.Visible
@@ -3947,8 +3948,6 @@ do
 		SettingsHolder.AnchorPoint = Vector2.new(0.5, 1)
 		SettingsHolder.Position = UDim2.new({0.5, 0}, {0.975, 0})
 		SettingsHolder.Size = UDim2.new({0.95, 0}, {0.755, 0})
-
-		Main.SettingsHolder = SettingsHolder
 	end
 
 	-- Custom settings template - made by @ragesploit on discord.
@@ -4037,9 +4036,9 @@ do
 		TopBarTitle.TextXAlignment = Enum.TextXAlignment.Left
 
 
-		Main.SettingsHolder.Template = SettingsTemplate
-		Main.SettingsHolder.Template.Title = TopBarTitle
-		Main.SettingsHolder.Template.Elements = SettingsTemplateElements
+		-- Main.SettingsHolder.Template = SettingsTemplate
+		-- Main.SettingsHolder.Template.Title = TopBarTitle
+		-- Main.SettingsHolder.Template.Elements = SettingsTemplateElements
 	end
 
 	local SettingsButton = Instance.new("ImageButton")
