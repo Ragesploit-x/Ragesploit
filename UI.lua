@@ -3461,6 +3461,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					local ElementSettings, NewElement = Tab[string.format("Create%s", ElementType)](Tab, ...)
 
 					NewElement.Parent = NewToggleSettings.Elements
+					NewElement.LayoutOrder = #NewToggleSettings.Elements:GetChildren()
 
 					-- if ElementType == "Dropdown" then
 					-- 	NewElement.List.ZIndex = 2
