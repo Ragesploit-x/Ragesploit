@@ -2951,8 +2951,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 							else
 								Dropdown.Selected.Text = DropdownSettings.CurrentOption[1]
 							end
-							TweenService:Create(DropdownOption.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
-							TweenService:Create(DropdownOption, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
+							-- TweenService:Create(DropdownOption.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
+							-- TweenService:Create(DropdownOption, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
+							DropdownOption.UIStroke.Transparency = 1
+							DropdownOption.BackgroundColor3 = SelectedTheme.DropdownSelected
 							Debounce = true
 						end
 
