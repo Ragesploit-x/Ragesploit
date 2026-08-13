@@ -981,6 +981,7 @@ local function ChangeTheme(Theme)
 
 	for _, TogglesSettings in pairs(Main.SettingsHolder:GetChildren()) do
 		TogglesSettings.TopBar.BackgroundColor3 = SelectedTheme.Topbar
+		TogglesSettings.TopBar.CornerRepair.BackgroundColor3 = SelectedTheme.Topbar
 		TogglesSettings.TopBar.Divider.BackgroundColor3 = SelectedTheme.ElementStroke
 		TogglesSettings.BackgroundColor3 = SelectedTheme.Background
 		TogglesSettings.TopBar.Hide.ImageColor3 = SelectedTheme.TextColor
@@ -995,7 +996,8 @@ local function ChangeTheme(Theme)
 						Option.UIStroke.Color = SelectedTheme.ElementStroke
 					end
 
-					Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
+					TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
+					-- Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
 				end
 			end
 		end
