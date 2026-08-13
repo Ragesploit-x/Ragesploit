@@ -4025,12 +4025,12 @@ do
 		SettingsTemplateElements.ScrollBarImageTransparency = 1
 		SettingsTemplateElements.CanvasSize = UDim2.new(0, 0, 0, 0)
 		SettingsTemplateElements.AutomaticCanvasSize = Enum.AutomaticSize.Y
-		SettingsTemplateElements.SortOrder = Enum.SortOrder.LayoutOrder
 		
 		local ElementsListLayout = Instance.new("UIListLayout")
 		ElementsListLayout.Parent = SettingsTemplateElements
 		ElementsListLayout.Padding = UDim.new(0, 6)
 		ElementsListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		ElementsListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 		local SettingsTopBar = Instance.new("Frame")
 		SettingsTopBar.Parent = SettingsTemplate
