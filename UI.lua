@@ -988,7 +988,7 @@ local function ChangeTheme(Theme)
 
 		print(TogglesSettings.Name, "backgroundcolor3 is now set to:", TogglesSettings.BackgroundColor3)
 
-		pcall(function()
+		local ssucc, erororr = pcall(function()
 			for _, Element in pairs(TogglesSettings.Elements:GetChildren()) do
 				if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
 					Element.BackgroundColor3 = SelectedTheme.ElementBackground
@@ -1005,6 +1005,10 @@ local function ChangeTheme(Theme)
 				end
 			end
 		end)
+
+		if not ssucc then
+			warn("not ssucc:", erororr)
+		end
 	end
 end
 
