@@ -986,8 +986,6 @@ local function ChangeTheme(Theme)
 		TogglesSettings.BackgroundColor3 = SelectedTheme.Background
 		TogglesSettings.TopBar.Hide.ImageColor3 = SelectedTheme.TextColor
 
-		print(TogglesSettings.Name, "backgroundcolor3 is now set to:", TogglesSettings.BackgroundColor3)
-
 		local ssucc, erororr = pcall(function()
 			for _, Element in pairs(TogglesSettings.Elements:GetChildren()) do
 				if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
@@ -1005,7 +1003,11 @@ local function ChangeTheme(Theme)
 						end
 
 						-- TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
-						Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
+						local SelectedDropdownElement = Element.List:FindFirstChild(Element.Selected.Text)
+						
+						if SelectedDropdownElement then
+							SelectedDropdownElement.BackgroundColor3 = SelectedTheme.DropdownSelected
+						end
 					end
 				end
 			end
