@@ -2990,6 +2990,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 						
 						if DropdownUIStroke then
 							DropdownUIStroke.Color = SelectedTheme.ElementStroke
+						else
+							warn("No UIStroke was found for:", DropdownOption:GetFullName())
 						end
 					end))
 				end
