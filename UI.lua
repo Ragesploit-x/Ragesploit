@@ -988,21 +988,23 @@ local function ChangeTheme(Theme)
 
 		print(TogglesSettings.Name, "backgroundcolor3 is now set to:", TogglesSettings.BackgroundColor3)
 
-		for _, Element in pairs(TogglesSettings.Elements:GetChildren()) do
-			if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
-				Element.BackgroundColor3 = SelectedTheme.ElementBackground
+		pcall(function()
+			for _, Element in pairs(TogglesSettings.Elements:GetChildren()) do
+				if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
+					Element.BackgroundColor3 = SelectedTheme.ElementBackground
 
-				if Element:FindFirstChild("List") then
-					for _, Option in pairs(Element.List:GetChildren()) do
-						Option.BackgroundColor3 = SelectedTheme.DropdownUnselected
-						Option.UIStroke.Color = SelectedTheme.ElementStroke
+					if Element:FindFirstChild("List") then
+						for _, Option in pairs(Element.List:GetChildren()) do
+							Option.BackgroundColor3 = SelectedTheme.DropdownUnselected
+							Option.UIStroke.Color = SelectedTheme.ElementStroke
+						end
+
+						-- TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
+						Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
 					end
-
-					-- TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
-					Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
 				end
 			end
-		end
+		end)
 	end
 end
 
@@ -2988,13 +2990,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end))
 
 					table.insert(Connections, Rayfield.Main:GetPropertyChangedSignal('BackgroundColor3'):Connect(function()
-						local DropdownUIStroke = DropdownOption:WaitForChild("UIStroke", 10)
-						
-						if DropdownUIStroke then
-							DropdownUIStroke.Color = SelectedTheme.ElementStroke
-						else
-							warn("No UIStroke was found for:", DropdownOption:GetFullName())
-						end
+						DropdownOption.UIStroke.Color = SelectedTheme.ElementStroke
 					end))
 				end
 			end
