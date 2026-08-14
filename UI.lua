@@ -3319,6 +3319,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				table.insert(Connections, Toggle.Settings.MouseButton1Click:Connect(function()
 					NewToggleSettings.Visible = not NewToggleSettings.Visible
 					Elements.Visible = not NewToggleSettings.Visible
+					Main.TabList.Interactable = not NewToggleSettings.Visible
 				end))
 
 				table.insert(Connections, Toggle.Settings.MouseEnter:Connect(function()
