@@ -4029,7 +4029,6 @@ do
 		Instance.new("UICorner", SettingsTemplate)
 		Instance.new("UIStroke", SettingsTemplate).Color = Color3.fromRGB(65, 65, 65)
 		SettingsTemplate.Visible = false
-		SettingsTemplate.ZIndex = 2
 
 		local SettingsTemplateElements = Instance.new("ScrollingFrame")
 		SettingsTemplateElements.Parent = SettingsTemplate
