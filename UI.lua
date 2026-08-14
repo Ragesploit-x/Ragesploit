@@ -2986,7 +2986,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end))
 
 					table.insert(Connections, Rayfield.Main:GetPropertyChangedSignal('BackgroundColor3'):Connect(function()
-						DropdownOption.UIStroke.Color = SelectedTheme.ElementStroke
+						DropdownOption:WaitForChild("UIStroke", 3).Color = SelectedTheme.ElementStroke
 					end))
 				end
 			end
