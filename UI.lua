@@ -997,7 +997,10 @@ local function ChangeTheme(Theme)
 						for _, Option in pairs(Element.List:GetChildren()) do
 							if Option.Name ~= "UIListLayout" then
 								Option.BackgroundColor3 = SelectedTheme.DropdownUnselected
-								Option.UIStroke.Color = SelectedTheme.ElementStroke
+
+								if Option:FindFirstChild("UIStroke") then
+									Option.UIStroke.Color = SelectedTheme.ElementStroke
+								end
 							end
 						end
 
