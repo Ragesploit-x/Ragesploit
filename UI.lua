@@ -996,8 +996,8 @@ local function ChangeTheme(Theme)
 						Option.UIStroke.Color = SelectedTheme.ElementStroke
 					end
 
-					TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
-					-- Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
+					-- TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
+					Element.List[Element.Selected.Text].BackgroundColor3 = SelectedTheme.DropdownSelected
 				end
 			end
 		end
@@ -3286,9 +3286,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 				NewToggleSettings.Name = string.format("%s Settings", ToggleSettings.Name)
 				NewToggleSettings.Parent = Main.SettingsHolder
 				NewToggleSettings.Visible = false
+				NewToggleSettings.TopBar.BackgroundColor3 = SelectedTheme.Topbar
+				NewToggleSettings.TopBar.CornerRepair.BackgroundColor3 = SelectedTheme.Topbar
+				NewToggleSettings.TopBar.Divider.BackgroundColor3 = SelectedTheme.ElementStroke
+				NewToggleSettings.BackgroundColor3 = SelectedTheme.Background
+				NewToggleSettings.TopBar.Hide.ImageColor3 = SelectedTheme.TextColor
 				
 				local ToggleSettingsTitle = NewToggleSettings.TopBar:WaitForChild("Title", 2)
-				local ToggleSettingsElements = NewToggleSettings:WaitForChild("Elements")
 
 				if ToggleSettingsTitle then
 					ToggleSettingsTitle.Text = string.format("%s - Toggle settings", ToggleSettings.Name)
