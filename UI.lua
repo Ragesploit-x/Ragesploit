@@ -2526,14 +2526,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		-- Section
 		function Tab:CreateSection(SectionName)
-
 			local SectionValue = {}
 
-			if SDone then
-				local SectionSpace = Elements.Template.SectionSpacing:Clone()
-				SectionSpace.Visible = true
-				SectionSpace.Parent = TabPage
-			end
+			-- if SDone then
+			-- 	local SectionSpace = Elements.Template.SectionSpacing:Clone()
+			-- 	SectionSpace.Visible = true
+			-- 	SectionSpace.Parent = TabPage
+			-- end
 
 			local Section = Elements.Template.SectionTitle:Clone()
 			Section.Title.Text = SectionName
