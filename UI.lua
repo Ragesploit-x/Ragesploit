@@ -986,6 +986,8 @@ local function ChangeTheme(Theme)
 		TogglesSettings.BackgroundColor3 = SelectedTheme.Background
 		TogglesSettings.TopBar.Hide.ImageColor3 = SelectedTheme.TextColor
 
+		print(TogglesSettings.Name, "backgroundcolor3 is now set to:", TogglesSettings.BackgroundColor3)
+
 		for _, Element in pairs(TogglesSettings.Elements:GetChildren()) do
 			if Element.ClassName == "Frame" and Element.Name ~= "Placeholder" and Element.Name ~= "SectionSpacing" and Element.Name ~= "Divider" and Element.Name ~= "SectionTitle" and Element.Name ~= "SearchTitle-fsefsefesfsefesfesfThanks" then
 				Element.BackgroundColor3 = SelectedTheme.ElementBackground
