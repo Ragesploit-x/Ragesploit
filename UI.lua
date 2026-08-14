@@ -995,8 +995,10 @@ local function ChangeTheme(Theme)
 
 					if Element:FindFirstChild("List") then
 						for _, Option in pairs(Element.List:GetChildren()) do
-							Option.BackgroundColor3 = SelectedTheme.DropdownUnselected
-							Option.UIStroke.Color = SelectedTheme.ElementStroke
+							if Option.Name ~= "UIListLayout" then
+								Option.BackgroundColor3 = SelectedTheme.DropdownUnselected
+								Option.UIStroke.Color = SelectedTheme.ElementStroke
+							end
 						end
 
 						-- TweenService:Create(Element.List[Element.Selected.Text], TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.DropdownSelected}):Play()
