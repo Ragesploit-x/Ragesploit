@@ -3165,7 +3165,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end
 				elseif #NewKeybind == 1 then
 					if Enum.KeyCode[NewKeybind] then
-						print("NEW KEYBIND TO SET:", NewKeybind)
 						KeybindSettings.CurrentKeybind = tostring(NewKeybind)
 						if not KeybindSettings.Ext then
 							SaveConfiguration()
