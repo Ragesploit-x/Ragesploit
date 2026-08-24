@@ -3156,7 +3156,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Keybind.KeybindFrame.KeybindBox.Text = ""
 			end))
 			table.insert(Connections, Keybind.KeybindFrame.KeybindBox.FocusLost:Connect(function()
-				local NewKeybind = Keybind.KeybindFrame.KeybindBox.Text
+				local NewKeybind = Keybind.KeybindFrame.KeybindBox.Text:upper()
 				CheckingForKey = false
 				if NewKeybind == nil or NewKeybind == "" then
 					NewKeybind = KeybindSettings.CurrentKeybind
@@ -3164,7 +3164,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 						SaveConfiguration()
 					end
 				elseif #NewKeybind == 1 then
-					if Enum.KeyCode[NewKeybind:upper()] then
+					if Enum.KeyCode[NewKeybind] then
+						print("NEW KEYBIND TO SET:", NewKeybind)
 						KeybindSettings.CurrentKeybind = tostring(NewKeybind)
 						if not KeybindSettings.Ext then
 							SaveConfiguration()
