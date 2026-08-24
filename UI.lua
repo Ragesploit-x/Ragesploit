@@ -3156,7 +3156,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Keybind.KeybindFrame.KeybindBox.Text = ""
 			end))
 			table.insert(Connections, Keybind.KeybindFrame.KeybindBox.FocusLost:Connect(function()
-				local NewKeybind = NewKeybind
+				local NewKeybind = Keybind.KeybindFrame.KeybindBox.Text
 				CheckingForKey = false
 				if NewKeybind == nil or NewKeybind == "" then
 					NewKeybind = KeybindSettings.CurrentKeybind
