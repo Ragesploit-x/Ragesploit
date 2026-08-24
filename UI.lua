@@ -3156,11 +3156,19 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Keybind.KeybindFrame.KeybindBox.Text = ""
 			end))
 			table.insert(Connections, Keybind.KeybindFrame.KeybindBox.FocusLost:Connect(function()
+				local NewKeybind = NewKeybind
 				CheckingForKey = false
-				if Keybind.KeybindFrame.KeybindBox.Text == nil or Keybind.KeybindFrame.KeybindBox.Text == "" then
-					Keybind.KeybindFrame.KeybindBox.Text = KeybindSettings.CurrentKeybind
+				if NewKeybind == nil or NewKeybind == "" then
+					NewKeybind = KeybindSettings.CurrentKeybind
 					if not KeybindSettings.Ext then
 						SaveConfiguration()
+					end
+				elseif #NewKeybind == 1 then
+					if Enum.KeyCode[NewKeybind:upper()] then
+						KeybindSettings.CurrentKeybind = tostring(NewKeybind)
+						if not KeybindSettings.Ext then
+							SaveConfiguration()
+						end
 					end
 				end
 			end))
@@ -3201,7 +3209,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end)
 
 					if not KeybindSettings.HoldToInteract then
-						local Success, Response = pcall(KeybindSettings.Callback)
+						local Success, Response = pcall(KeybindSettings.Callback, tostring(KeybindSettings.CurrentKeybind))
 						if not Success then
 							TweenService:Create(Keybind, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 							TweenService:Create(Keybind.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
