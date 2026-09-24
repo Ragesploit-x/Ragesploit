@@ -14,8 +14,6 @@ if debugX then
 	warn('Initialising Rayfield')
 end
 
-
-
 local function getService(name)
 	local service = game:GetService(name)
 	return if cloneref then cloneref(service) else service
@@ -160,7 +158,7 @@ local useStudio = RunService:IsStudio() or false
 local settingsCreated = false
 local settingsInitialized = false -- Whether the UI elements in the settings page have been set to the proper values
 local prompt = useStudio and require(script.Parent.prompt) or loadWithTimeout('https://raw.githubusercontent.com/SiriusSoftwareLtd/Sirius/refs/heads/request/prompt.lua')
-local requestFunc = (syn and syn.request) or (fluxus and fluxus.request) or (http and http.request) or http_request or request
+local requestFunc = (syn and syn.request) or (fluxus and fluxus.request) or request or http_request or (http and http.request)
 
 -- Validate prompt loaded correctly
 if not prompt and not useStudio then
