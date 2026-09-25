@@ -29,6 +29,7 @@ local CoreGui = getService("CoreGui")
 -- Errors with the function are caught and logged to the output
 local function loadWithTimeout(url: string, timeout: number?): ...any
 	assert(type(url) == "string", "Expected string, got " .. type(url))
+    
 	timeout = timeout or 5
 	local requestCompleted = false
 	local success, result = false, nil
@@ -44,6 +45,7 @@ local function loadWithTimeout(url: string, timeout: number?): ...any
 			requestCompleted = true
 			return
 		end
+        
 		local content = fetchResult -- Fetched content
 		local execSuccess, execResult = pcall(function()
 			return loadstring(content)()
@@ -802,7 +804,6 @@ do
 		local ok, err = pcall(function()
 			ensureFolder(RayfieldFolder)
 			ensureFolder(AssetPath)
-
 			-- skip ids we've already tried so a dead asset can't loop the loader forever
 			local attempted = {}
 			local function nextToFetch()
@@ -816,7 +817,7 @@ do
 
 			if nextToFetch() then
 				task.spawn(function()
-					while true do
+					while task.wait() do
 						local id = nextToFetch()
 						if not id then break end
 						-- a failed request can hand back a nil/empty Body — never pass that to writefile
@@ -826,7 +827,6 @@ do
 						end
 						-- mark after the attempt so the poll waits for real downloads but still skips a dead asset
 						attempted[id] = true
-						task.wait()
 					end
 				end)
 
@@ -852,7 +852,6 @@ do
 	else
 		secureNotify("no_getcustomasset", "Rayfield", "Your executor does not support getcustomasset. Some UI images may not render correctly.")
 	end
-
 
 	Rayfield.Main.Shadow.Image.Image = customAssets[tostring(5587865193)]
 	Rayfield.Main.Topbar.Hide.Image = customAssets[tostring(10137832201)]
@@ -881,7 +880,7 @@ do
 end -- custom asset block
 
 local minSize = Vector2.new(1024, 768)
-local useMobileSizing
+local useMobileSizing = false
 
 if Rayfield.AbsoluteSize.X < minSize.X and Rayfield.AbsoluteSize.Y < minSize.Y then
 	useMobileSizing = true
@@ -892,13 +891,12 @@ if UserInputService.TouchEnabled then
 	useMobilePrompt = true
 end
 
+task.wait();
 if getgenv().MobileSize then
 	useMobileSizing = true
 end
 
-
 -- Object Variables
-
 local Main = Rayfield.Main
 local MPrompt = Rayfield:FindFirstChild('Prompt')
 local Topbar = Main.Topbar
@@ -915,10 +913,10 @@ local dragOffsetMobile = 150
 Rayfield.DisplayOrder = 100
 LoadingFrame.Version.Text = Release
 
+task.wait(.1)
 -- Thanks to Latte Softworks for the Lucide integration for Roblox
-local Icons = useStudio and require(script.Parent.icons) or loadWithTimeout('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/refs/heads/main/icons.lua')
+local Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/refs/heads/main/icons.lua"))(); -- useStudio and require(script.Parent.icons) or loadWithTimeout('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/refs/heads/main/icons.lua')
 -- Variables
-
 local CFileName = nil
 local CEnabled = false
 local Minimised = false
